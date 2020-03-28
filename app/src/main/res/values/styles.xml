@@ -1,0 +1,68 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Text">
+<!--        <item name="android:textColor">@color/default_text</item>-->
+    </style>
+
+    <style name="Header" parent="Text">
+        <item name="android:layout_marginTop">@dimen/section_vertical_padding</item>
+<!--        <item name="android:textColor">@color/default_header_text</item>-->
+    </style>
+
+    <style name="Header5" parent="Header">
+        <item name="android:textSize">@dimen/typography_h5</item>
+    </style>
+
+    <style name="Header6" parent="Header">
+        <item name="android:textSize">@dimen/typography_h6</item>
+    </style>
+
+    <style name="Subtitle1" parent="Text">
+        <item name="android:textSize">@dimen/typography_subtitle1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Subtitle1.Black" parent="Subtitle1">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Subtitle2" parent="Text">
+        <item name="android:textSize">@dimen/typography_subtitle2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Body1" parent="Text">
+        <item name="android:textSize">@dimen/typography_body1</item>
+    </style>
+
+    <style name="Body1.Black" parent="Body1">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Body1.Link" parent="Body1">
+<!--        <item name="android:background">@drawable/button_transparent_bg</item>-->
+<!--        <item name="android:textColor">@color/button_link</item>-->
+    </style>
+
+    <style name="Body2" parent="Text">
+        <item name="android:textSize">@dimen/typography_body2</item>
+    </style>
+
+    <style name="Caption" parent="Text">
+        <item name="android:textSize">@dimen/typography_caption</item>
+    </style>
+
+</resources>

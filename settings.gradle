@@ -1,0 +1,3 @@
+include ':app', ':domain', ':buildSrc', ':repository', ':persistence'
+rootProject.name='Polygon Market Watcher'
+include ':model'

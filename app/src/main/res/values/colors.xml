@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Polygon brand colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="light">#FAFAFA</color>
+    <color name="grey">#7A7A7A</color>
+    <color name="dark">#363636</color>
+    <color name="black">#0A0A0A</color>
+    <color name="primary">#5F5CFF</color>
+    <color name="success">#33E190</color>
+    <color name="warning">#FFDD57</color>
+    <color name="danger">#FF3860</color>
+
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">#262566</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="gain_green">@color/success</color>
+    <color name="gain_green_transparent">#0033E190</color>
+
+    <color name="loss_red">@color/danger</color>
+    <color name="loss_red_transparent">#00FF3860</color>
+
+</resources>
