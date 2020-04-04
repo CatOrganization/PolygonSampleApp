@@ -19,7 +19,11 @@
 
     <style name="Header" parent="Text">
         <item name="android:layout_marginTop">@dimen/section_vertical_padding</item>
-<!--        <item name="android:textColor">@color/default_header_text</item>-->
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Header4" parent="Header">
+        <item name="android:textSize">@dimen/typography_h4</item>
     </style>
 
     <style name="Header5" parent="Header">

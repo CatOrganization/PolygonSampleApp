@@ -58,6 +58,10 @@ dependencies {
     implementation("org.koin:koin-android:${Dependencies.koinVersion}")
     implementation("com.jakewharton.threetenabp:threetenabp:${Dependencies.threeTenAbpVersion}")
 
+    val groupieVersion = "2.8.0"
+    implementation("com.xwray:groupie:$groupieVersion")
+    implementation("com.xwray:groupie-kotlin-android-extensions:$groupieVersion")
+
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.core:core-ktx:1.2.0")
     implementation("com.google.android.material:material:1.1.0")

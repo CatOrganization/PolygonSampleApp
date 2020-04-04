@@ -11,9 +11,11 @@
     <color name="warning">#FFDD57</color>
     <color name="danger">#FF3860</color>
 
+    <color name="light_grey">#BBBBBB</color>
+
     <color name="colorPrimary">@color/primary</color>
     <color name="colorPrimaryDark">#262566</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">@color/primary</color>
 
     <color name="gain_green">@color/success</color>
     <color name="gain_green_transparent">#0033E190</color>

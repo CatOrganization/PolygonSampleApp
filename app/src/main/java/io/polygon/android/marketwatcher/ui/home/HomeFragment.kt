@@ -4,48 +4,52 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import io.polygon.android.marketwatcher.R
+import io.polygon.android.marketwatcher.ui.groupie.EquityCardItem
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private val adapter by lazy { GroupAdapter<GroupieViewHolder>() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+    ): View? = inflater.inflate(R.layout.fragment_home, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        equity_card_recycler.adapter = adapter
+        equity_card_recycler.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        val equities = listOf(
+            EquityIdentifiers("RDFN", "Redfin Corporation"),
+            EquityIdentifiers("SPY", "SPDR S&P 500 ETF"),
+            EquityIdentifiers("QQQ", "PowerShares QQQ Trust Ser 1"),
+            EquityIdentifiers("DIA", "SPDR Dow Jones Industrial Average")
+        )
 
         homeViewModel.apply {
-            equityName.observe(this@HomeFragment.viewLifecycleOwner, Observer {
+            equityData.observe(viewLifecycleOwner, Observer {
                 it ?: return@Observer
-                equity_card.setEquityName(it)
-            })
 
-            equityValue.observe(this@HomeFragment.viewLifecycleOwner, Observer {
-                it ?: return@Observer
-                equity_card.setEquityValue(it)
-            })
-
-            equityHistory.observe(this@HomeFragment.viewLifecycleOwner, Observer {
-                it ?: return@Observer
-                equity_card.setEquityHistory(it.map { it.price })
+                adapter.clear()
+                adapter.addAll(it.map { EquityCardItem(it) })
             })
         }
 
-        homeViewModel.fetchEquityInfo()
 
-        return root
+        homeViewModel.fetchEquityInfo(equities)
     }
 }

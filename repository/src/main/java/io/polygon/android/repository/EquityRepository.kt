@@ -1,13 +1,11 @@
 package io.polygon.android.repository
 
-import io.polygon.kotlin.model.EquityAggregate
-import io.polygon.kotlin.model.EquityAggregates
-import io.polygon.kotlin.model.EquityLastTrade
+import io.polygon.kotlin.model.*
 import io.polygon.kotlin.persistence.sharedprefs.PolygonKeySPAO
 import io.polygon.kotlin.sdk.rest.*
-import io.polygon.kotlin.sdk.rest.stocks.LastTradeDTO
-import io.polygon.kotlin.sdk.rest.stocks.LastTradeResultDTO
-import io.polygon.kotlin.sdk.rest.stocks.getLastTrade
+import io.polygon.kotlin.sdk.rest.reference.TickerDetailsDTO
+import io.polygon.kotlin.sdk.rest.reference.getTickerDetails
+import io.polygon.kotlin.sdk.rest.stocks.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.lang.IllegalStateException
@@ -46,4 +44,31 @@ class EquityRepository : KoinComponent {
 
     private fun AggregateDTO.toDomainModel() =
         EquityAggregate(this.close!!, this.timestampMillis!!)
+
+    suspend fun getTickerDetails(symbol: String) =
+        polygonRestClient.referenceClient
+            .getTickerDetails(symbol)
+            .toDomainModel()
+
+    private fun TickerDetailsDTO.toDomainModel() =
+        TickerDetails(
+            symbol = symbol!!,
+            name = name!!,
+            logoUrl = logoUrl!!,
+            tags = tags,
+            similars = similar
+        )
+
+    suspend fun getTickerSnapshot(symbol: String) =
+        polygonRestClient.stocksClient
+            .getSnapshot(symbol)
+            .toDomainModel()
+
+    private fun SnapshotSingleTickerDTO.toDomainModel() =
+        TickerSnapshot(
+            symbol = ticker.ticker!!,
+            lastPrice = ticker.lastTrade.price!!,
+            todaysChange = ticker.todaysChange!!,
+            todaysChangePercentage = ticker.todaysChangePerc!!
+        )
 }
